@@ -33,11 +33,24 @@ body {
     width: 600px;
     height: 600px;
     border: 2px solid rgba(0, 0, 0, 0.446);
+    padding: 10px;
+    display: flex;
 }
 
-#right-column {
-    width: 175px;
-    margin-right: 0;
+.row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1;
+    width: 580px;
+    border: 1px dotted rgb(184, 184, 184);
+}
+
+.row-column {
+    height: 580px;
+    border: 1px dotted rgb(184, 184, 184);
+    display: flex;
+    flex: 1;
 }
 
 .circle {
