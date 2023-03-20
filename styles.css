@@ -9,7 +9,7 @@ body {
 }
 
 #header {
-    height: 100px;
+    height: 115px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,22 +18,21 @@ body {
 #main {
     height: 600px;
     display: flex;
-    justify-content: flex-end;
-    gap: 5%;
+    justify-content: center;
     padding: 10px;
+    margin-bottom: 20px;
 }
 
-#left-column {
-    width: 675px;
+#sketchArea {
+    width: 800px;
     display: flex;
-    justify-content: center;
-    flex: 1;
+    justify-content: space-between;
 }
 
 #grid-container {
     width: 600px;
     height: 600px;
-    border: 2px solid black;
+    border: 2px solid rgba(0, 0, 0, 0.446);
 }
 
 #right-column {
@@ -41,13 +40,33 @@ body {
     margin-right: 0;
 }
 
+.circle {
+    width: 100px;
+    height: 100px;
+    border: 2px dotted black;
+    border-radius: 100px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#rightColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+button {
+    border-style: none;
+    background-color: transparent;
+}
+
 #footer {
-    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background-color: rgba(198, 243, 255, 0.824);
 }
- #footer > div {
-    padding: 15px;
- }
+
+.circle:hover {
+    border: 3px solid rgb(22, 184, 22);
+}
