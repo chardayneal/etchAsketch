@@ -1,12 +1,19 @@
 const container = document.getElementById('grid-container');
 
-let number = 10;
+let number = 16;
 for (let i = 0; i < number; i++) {
     let gridRow = document.createElement('div');
     gridRow.setAttribute('class', 'row');
     (container.appendChild(gridRow)* 6);
     
 }
+
+//display grid size
+const input = document.querySelector('input');
+input.setAttribute('value', `${number}`);
+const sliderText = document.getElementById('sliderText');
+sliderText.textContent = `${number} x ${number}`;
+
 
 const rows = document.querySelectorAll('.row');
 rows.forEach((row) => {

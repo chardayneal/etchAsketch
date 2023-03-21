@@ -16,7 +16,12 @@
             <div id="sketchArea">
                 <div id="grid-container"></div>
                 <div id="rightColumn">
-                    <button id="newGrid">New Grid Size</button>
+                    <div>
+                        <div id="sliderText"></div>
+                        <div class="slidecontainer">
+                            <input type="range" min="2" max="100" value="50" class="slider" id="myRange" step="1">
+                        </div>
+                    </div>
                     <button class="circle">
                         <div id="chooseColor">Choose Color</div>
                     </button>
