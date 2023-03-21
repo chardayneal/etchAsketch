@@ -26,6 +26,7 @@ body {
 #sketchArea {
     width: 800px;
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
 }
 
@@ -43,16 +44,14 @@ body {
     flex-wrap: wrap;
     flex: 1;
     width: 580px;
-    border: 1px dotted rgb(184, 184, 184);
 }
 
-.row-column:hover {
+.row-column[modified]:hover {
     background-color: bisque;
 }
 
 .row-column {
     height: 580px;
-    border: 1px dotted rgb(184, 184, 184);
     display: flex;
     flex: 1;
 }
@@ -80,6 +79,7 @@ body {
     height: 15px; /* Slider handle height */
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
+    border-radius: 100px;
 }
 
 .circle {
@@ -96,11 +96,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-}
-
-button {
-    border-style: none;
-    background-color: transparent;
 }
 
 #footer {
