@@ -33,7 +33,7 @@ body {
 #grid-container {
     width: 600px;
     height: 600px;
-    border: 2px solid rgba(0, 0, 0, 0.446);
+    border: 5px solid rgba(0, 0, 0, 0.446);
     padding: 10px;
     display: flex;
 }
@@ -44,16 +44,16 @@ body {
     flex-wrap: wrap;
     flex: 1;
     width: 580px;
+    border: 1px solid rgba(85, 84, 84, 0.446);
+    border-collapse: collapse;
 }
 
-.row-column[modified]:hover {
-    background-color: bisque;
-}
-
-.row-column {
+.square {
     height: 580px;
     display: flex;
     flex: 1;
+    border: 1px solid rgba(3, 3, 3, 0.232);
+    border-collapse: collapse;
 }
 
 .slidecontainer {

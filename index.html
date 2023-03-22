@@ -16,21 +16,25 @@
             <div id="sketchArea">
                 <div id="grid-container"></div>
                 <div id="rightColumn">
-                    <div>
+                    <div id="slider">
                         <div id="sliderText"></div>
                         <div class="slidecontainer">
                             <input type="range" min="2" max="100" value="50" class="slider" id="myRange" step="1">
                         </div>
                     </div>
-                    <input type="color" id="colorWell" value="#ff0000" class="circle">
-                        <div id="chooseColor">Choose Color</div>
+                    <div id="color">
+                        <label for="colorWell">Choose Color: </label>
+                        <input type="color" id="colorWell" value="#ff0000" name="colorWell">
                     </input>
-                    <button class="circle" >
-                        <div id="rainbowColor">Rainbow Color</div>
-                    </button>
-                    <button id="erase">
-                        <div id="erase-text">Eraser Off</div>
-                    </button>
+                    </div>
+                    <div id="rainbow">
+                        <label for="rainbow-cb">Rainbow Color</label>
+                        <input type="checkbox" id="rainbowColor" name="rainbow-cb" value="rainbow" >
+                    </div>
+                    <div id="erase">
+                        <label for="eraser">Erase</label>
+                        <input type="checkbox" id="eraser" name="eraser" value="erase" >
+                    </div>
                     <button id="clearAll">
                         <div >Clear Grid</div>
                     </button>
