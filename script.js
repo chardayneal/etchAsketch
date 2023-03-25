@@ -24,7 +24,7 @@ const sliderText = document.getElementById('sliderText');
 sliderText.textContent = `${number} x ${number}`;
 
 
-
+// selects color from color picker
 let colorWell;
 const defaultColor = "#000000";
 window.addEventListener('load', startup, false);
@@ -38,14 +38,22 @@ function startup() {
 
 const squares = document.querySelectorAll('.square');
 function updateAll(event) {
-    squares.forEach((box) => {
-        box.addEventListener('click', () => {
-            box.style.backgroundColor = event.target.value;
-        });
-        //
-    });
+    if (eraser.checked == false) {
+        if (rainbowColor.checked == false){
+            squares.forEach((box) => {
+                box.addEventListener('click', () => {
+                    box.style.backgroundColor = event.target.value;
+                });
+            });
+        } else {
+            getRainbowColor();
+        }
+    } else {
+        erase();
+    }
 }
 
+// colors grid default color without color selection
 squares.forEach((box) => {
     box.addEventListener('click', () => {
         box.style.backgroundColor = defaultColor;
