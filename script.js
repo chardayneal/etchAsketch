@@ -1,6 +1,6 @@
 const container = document.getElementById('grid-container');
 
-// creates grid size
+// D E F A U L T   G R I D   S I Z E
 let number = 16;
 for (let i = 0; i < number; i++) {
     let row = document.createElement('div');
@@ -24,9 +24,19 @@ const sliderText = document.getElementById('sliderText');
 sliderText.textContent = `${number} x ${number}`;
 
 
-// selects color from color picker
+//  C O L O R   G R I D
+container.setAttribute('onmouseenter', 'colorGrid()');
+
+function colorGrid() {
+    squares.forEach((square) => {
+        square.addEventListener('mouseover', updateAll)
+    });
+}
+
+//  C H O O S E   C O L O R   P I C K E R   
 let colorWell;
 const defaultColor = "#000000";
+
 window.addEventListener('load', startup, false);
 
 function startup() {
@@ -37,14 +47,11 @@ function startup() {
 }
 
 const squares = document.querySelectorAll('.square');
-function updateAll(event) {
+
+function updateAll() {
     if (eraser.checked == false) {
         if (rainbowColor.checked == false){
-            squares.forEach((box) => {
-                box.addEventListener('click', () => {
-                    box.style.backgroundColor = event.target.value;
-                });
-            });
+            getChosenColor();
         } else {
             getRainbowColor();
         }
@@ -53,62 +60,17 @@ function updateAll(event) {
     }
 }
 
-// colors grid default color without color selection
-squares.forEach((box) => {
-    box.addEventListener('click', () => {
-        box.style.backgroundColor = defaultColor;
-    });
-});
-
-//returns grid item to white background color
-const eraser = document.getElementById('eraser');
-eraser.addEventListener('click', () => {
-    if (eraser.checked == true) {
-        erase();
-    } else if (rainbowColor.checked == true) {
-        getRainbowColor();
-    }else {
-        getChosenColor();
-    }
-});
-
-function erase() {
-    squares.forEach((box) => {
-        box.addEventListener("click", () => {
-            box.style.backgroundColor = '#ffffff';
-        });
-    })
-}
-
+//retrieves color from color picker
 function getChosenColor() {
     squares.forEach((box) => {
-        box.addEventListener("click", () => {
+        box.addEventListener("mouseover", () => {
             box.style.backgroundColor = colorWell.value;
         });
     });
 }
 
-//add EventListener to Clear Grid button
-const clear = document.querySelector('#clearAll');
-clear.addEventListener("click", () => {
-    if(confirm('Are you sure you would like to clear grid?')) {
-        squares.forEach((box) => {
-            box.style.backgroundColor = '#ffffff';
-        })
-    }
-});
 
-//rainbow color selector
-const array = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
-function getRandomColor() {
-    let randomColor = '#';
-    for (let i = 0; i < 6; i++) {
-        let num = Math.floor(Math.random()* array.length);
-        randomColor += array[num];
-    }
-    return randomColor;
-}
-
+//  R A I N B O W    C H E C K B O X
 const rainbowColor = document.getElementById('rainbowColor');
 rainbowColor.addEventListener("click", () => {
     if (rainbowColor.checked == true) {
@@ -120,10 +82,54 @@ rainbowColor.addEventListener("click", () => {
     }
 });
 
+//rainbow color selector
+const array = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+
+function getRandomColor() {
+    let randomColor = '#';
+    for (let i = 0; i < 6; i++) {
+        let num = Math.floor(Math.random()* array.length);
+        randomColor += array[num];
+    }
+    return randomColor;
+}
+
+// colors rainbow color
 function getRainbowColor() {
     squares.forEach((box) => {
-        box.addEventListener('click', () => {
+        box.addEventListener('mouseover', () => {
             box.style.backgroundColor = getRandomColor();
         });
     });
 }
+
+//  E R A S E R   C H E C K B O X
+const eraser = document.getElementById('eraser');
+eraser.addEventListener('click', () => {
+    if (eraser.checked == true) {
+        erase();
+    } else if (rainbowColor.checked == true) {
+        getRainbowColor();
+    }else {
+        getChosenColor();
+    }
+});
+
+//erases tile
+function erase() {
+    squares.forEach((box) => {
+        box.addEventListener("mouseover", () => {
+            box.style.backgroundColor = '#ffffff';
+        });
+    })
+}
+
+//  C L E A R   G R I D   B U T T O N
+const clear = document.querySelector('#clearAll');
+clear.addEventListener("click", () => {
+    if(confirm('Are you sure you would like to clear grid?')) {
+        squares.forEach((box) => {
+            box.style.backgroundColor = '#ffffff';
+        })
+    }
+});
