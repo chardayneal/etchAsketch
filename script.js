@@ -1,37 +1,66 @@
 const container = document.getElementById('grid-container');
+let number;
+//nodelist
+let tiles;
+
 
 // D E F A U L T   G R I D   S I Z E
-let number = 16;
-for (let i = 0; i < number; i++) {
-    let row = document.createElement('div');
-    row.setAttribute('class', 'row');
-    container.appendChild(row);
-    
-}
-const rows = document.querySelectorAll('.row');
-rows.forEach((row) => {
-    for (let i = 0; i < number; i++) {
-        let square = document.createElement('div');
-        square.setAttribute('class', 'square')
-        row.append(square);
+getGrid(16);
+function getGrid(num) {
+    container.setAttribute('onmouseenter', 'colorGrid()');
+    for (let i = 0; i < num; i++) {
+        let row = document.createElement('div');
+        row.setAttribute('class', 'row');
+        container.appendChild(row);
+        
     }
-});
+    const rows = document.querySelectorAll('.row');
+    rows.forEach((row) => {
+        for (let i = 0; i < num; i++) {
+            let square = document.createElement('div');
+            square.setAttribute('class', 'square')
+            row.append(square);
+        }
+    });
+    number = num;
+}
 
-//display grid size on slider
+//update nodelist
+const squares = document.querySelectorAll('.square');
+tiles = squares;
+
+
+//  S L I D E R   &   T E X T
 const input = document.querySelector('input');
 input.setAttribute('value', `${number}`);
 const sliderText = document.getElementById('sliderText');
 sliderText.textContent = `${number} x ${number}`;
+
+//addEventListener for slider
+input.addEventListener('change', () => {
+    removeChildren(container);
+    getGrid(Number(`${input.value}`));
+    sliderText.textContent = `${input.value} x ${input.value}`;
+    const tile = document.querySelectorAll('.square');
+    tiles = tile;
+});
+
+function removeChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.lastChild);
+    }
+}
 
 
 //  C O L O R   G R I D
 container.setAttribute('onmouseenter', 'colorGrid()');
 
 function colorGrid() {
-    squares.forEach((square) => {
+    tiles.forEach((square) => {
         square.addEventListener('mouseover', updateAll)
     });
 }
+
 
 //  C H O O S E   C O L O R   P I C K E R   
 let colorWell;
@@ -45,8 +74,6 @@ function startup() {
     colorWell.addEventListener('change', updateAll, false);
     colorWell.select();
 }
-
-const squares = document.querySelectorAll('.square');
 
 function updateAll() {
     if (eraser.checked == false) {
@@ -62,7 +89,7 @@ function updateAll() {
 
 //retrieves color from color picker
 function getChosenColor() {
-    squares.forEach((box) => {
+    tiles.forEach((box) => {
         box.addEventListener("mouseover", () => {
             box.style.backgroundColor = colorWell.value;
         });
@@ -96,12 +123,13 @@ function getRandomColor() {
 
 // colors rainbow color
 function getRainbowColor() {
-    squares.forEach((box) => {
+    tiles.forEach((box) => {
         box.addEventListener('mouseover', () => {
             box.style.backgroundColor = getRandomColor();
         });
     });
 }
+
 
 //  E R A S E R   C H E C K B O X
 const eraser = document.getElementById('eraser');
@@ -117,7 +145,7 @@ eraser.addEventListener('click', () => {
 
 //erases tile
 function erase() {
-    squares.forEach((box) => {
+    tiles.forEach((box) => {
         box.addEventListener("mouseover", () => {
             box.style.backgroundColor = '#ffffff';
         });
@@ -128,8 +156,8 @@ function erase() {
 const clear = document.querySelector('#clearAll');
 clear.addEventListener("click", () => {
     if(confirm('Are you sure you would like to clear grid?')) {
-        squares.forEach((box) => {
-            box.style.backgroundColor = '#ffffff';
-        })
+        tiles.forEach((tile) => {
+            tile.style.backgroundColor = '#ffffff';
+        });
     }
 });
