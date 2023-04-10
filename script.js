@@ -43,6 +43,7 @@ input.addEventListener('change', () => {
     sliderText.textContent = `${input.value} x ${input.value}`;
     const tile = document.querySelectorAll('.square');
     tiles = tile;
+    colorGrid();
 });
 
 function removeChildren(parent) {
